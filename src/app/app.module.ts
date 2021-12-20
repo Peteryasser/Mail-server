@@ -7,13 +7,15 @@ import {FormsModule} from "@angular/forms";
 import { HomeComponent } from './home/home.component';
 import { StatComponent } from './stat/stat.component';
 import {HttpClientModule} from "@angular/common/http";
+import { InboxComponent } from './inbox/inbox.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    StatComponent
+    StatComponent,
+    InboxComponent
   ],
   imports: [
     BrowserModule,

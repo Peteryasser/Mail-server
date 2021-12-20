@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {AutoService} from "../service/auto/auto.service";
 import {Data} from "../model/Data";
-import {HttpClient, HttpClientModule, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'cf-login',
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   }
   onSubmit(logInForm: NgForm){
     console.log(logInForm.value)
-    const data=new Data(logInForm.value.email,logInForm.value.password);
+    const data=new Data(logInForm.value.inputEmail,logInForm.value.password);
     this.servise.post<boolean>('http://localhost:8080/signIn',data,{
       headers:new HttpHeaders({
         'Content-Type': 'application/json'
@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
       (isValed: boolean) => {
       }
     )
-
     this.autoService.auto()
 }
   signin(){

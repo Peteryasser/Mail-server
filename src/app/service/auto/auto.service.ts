@@ -26,7 +26,6 @@ export class AutoService {
   }
 
 
-
   logout() {
     this.isAuto = false;
     this.router.navigate(['']);

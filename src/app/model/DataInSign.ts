@@ -1,19 +1,19 @@
 export class DataInSign{
-  private first:string;
-  private last:string;
+  private firstName:string;
+  private lastName:string;
   private email:string;
   private password:string;
   constructor(first:string,last:string,email: string,password: string) {
-    this.first=first
-    this.last=last
+    this.firstName=first
+    this.lastName=last
     this.email=email
     this.password=password
   }
   getFirst(): string{
-    return this.first
+    return this.firstName
   }
   getLast(): string{
-    return this.last
+    return this.lastName
   }
   getEmail(): string{
     return this.email

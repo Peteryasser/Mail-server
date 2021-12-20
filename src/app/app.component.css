@@ -1,5 +1,10 @@
 .logout{
-  position: relative;
-  right: -1350px;
+  position: absolute;
+  right: 0px;
   cursor: pointer;
+}
+.inbox{
+  position: absolute;
+  left: 80px;
+  top: 8px;
 }
