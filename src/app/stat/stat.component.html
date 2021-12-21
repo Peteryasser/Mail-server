@@ -21,6 +21,20 @@
                placeholder="Password" required ngModel>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        <div>
+          <button class="signin" routerLink="" >Back</button>
+        </div>
+
+        <div class="alert alert-danger" role="alert" *ngIf="isFormNCom">
+          Please fill all fields.
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="inCorrectMail">
+          Invalid Mail.
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="isNotCorrect">
+          There is an account with that email.
+          Please change it.
+        </div>
       </form>
     </div>
   </div>

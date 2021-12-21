@@ -1,11 +1,11 @@
 export class DataInSign{
   private firstName:string;
-  private lastName:string;
+  private secondName:string;
   private email:string;
   private password:string;
   constructor(first:string,last:string,email: string,password: string) {
     this.firstName=first
-    this.lastName=last
+    this.secondName=last
     this.email=email
     this.password=password
   }
@@ -13,7 +13,7 @@ export class DataInSign{
     return this.firstName
   }
   getLast(): string{
-    return this.lastName
+    return this.secondName
   }
   getEmail(): string{
     return this.email
