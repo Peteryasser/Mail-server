@@ -29,6 +29,7 @@ export class StatComponent implements OnInit {
     if (!this.autoService.autoSign(data)) {
       this.isFormNCom = false;
       this.inCorrectMail = true;
+      this.isNotCorrect=false;
       return;
     }
     this.isFormNCom = false;
@@ -48,7 +49,5 @@ export class StatComponent implements OnInit {
           this.autoService.signinCom()
         }
       })
-
   }
-
 }
