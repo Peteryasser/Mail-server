@@ -1,14 +1,16 @@
-export class Data{
-  private email:string;
-  private password:string;
-  constructor(email: string,password: string) {
-    this.email=email
-    this.password=password
+export class Data {
+  private email: string;
+  private password: string;
+
+  constructor(email: string, password: string) {
+    this.email = email
+    this.password = password
   }
-  getEmail(): string{
+
+  getEmail(): string {
     return this.email
   }
-  getPassword(): string{
+  getPassword(): string {
     return this.password
   }
 }
