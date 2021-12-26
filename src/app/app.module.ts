@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { StatComponent } from './stat/stat.component';
 import {HttpClientModule} from "@angular/common/http";
 import { InboxComponent } from './inbox/inbox.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { InboxComponent } from './inbox/inbox.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

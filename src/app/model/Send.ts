@@ -1,29 +1,34 @@
-import {Data} from "./Data";
+import { Data } from "./Data";
 
-export class Send{
-  private user:Data;
-  private to:string;
-  private subject:string;
-  private body:string
-  private file:any;
-  constructor(user :Data,to: string,subject: string,body:string,file:any) {
-    this.user=user
-    this.to=to
-    this.subject=subject
-    this.body=body
-    this.file=file
+// immutable design pattern
+export class Send {
+  private from: string;
+  private to: string;
+  private subject: string;
+  private body: string
+  // private formData: FormData
+
+  constructor(from: string, to: string, subject: string, body: string) {
+    this.from = from
+    this.to = to
+    this.subject = subject
+    this.body = body
+    // this.formData = formData
   }
-  getEmail(): string{
+  getFrom() {
+    return this.from
+  }
+  getTo(): string {
     return this.to
   }
-  getSubject(): string{
+  getSubject(): string {
     return this.subject
   }
-  getBody(): string{
+  getBody(): string {
     return this.body
   }
-  getFile(): any{
-    return this.file
-  }
+  // getAttachement(): FormData {
+  //   return this.formData
+  // }
 
 }
