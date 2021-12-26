@@ -23,13 +23,13 @@ export class HomeComponent implements OnInit {
     const formData = new FormData()
     const files: File[] = event.target.files
 
-    for (const file of files)
-      formData.append('files', file, file.name)
+    formData.append('files', files[0], files[0].name)
 
     this.attachement = formData
-    this.http.post<any>('http://localhost:8080/upload', formData).subscribe(
-      (res) => console.log(res)
-    );
+
+    // this.http.post<any>('http://localhost:8080/upload', formData).subscribe(
+    //   (res) => console.log(res)
+    // );
 
   }
 
@@ -41,8 +41,7 @@ export class HomeComponent implements OnInit {
     }
 
     const email = new Send(this.autoService.save().getEmail(), sendForm.value.to,
-      sendForm.value.subject, sendForm.value.body)
-    console.log(email)
+      sendForm.value.subject, sendForm.value.body, this.attachement)
 
     if (!this.autoService.autoSend(email)) {
       this.isFormNCom = false;
@@ -53,6 +52,7 @@ export class HomeComponent implements OnInit {
     this.isFormNCom = false;
     this.inCorrectMail = false;
 
+    console.log(email.getAttachement)
     this.http.post<any>('http://localhost:8080/send', email).subscribe(
       (res) => console.log(res)
     );
