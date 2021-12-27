@@ -10,21 +10,15 @@
   font-size: x-large;
   grid-template-columns: repeat(4,100px);
 }
-.table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+.border{
+  padding: 10px;
 }
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
+.btn{
+  margin-right: 10px;
 }
-tr:hover {
-  background-color: #D6EEEE;
+.fa {
+  margin-right: 10px;
 }
-tr{
-  border-bottom: 1px solid #ddd;
+table .btn{
+  margin: 2px;
 }

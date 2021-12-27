@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { AutoService } from "../service/auto/auto.service";
 import { Send } from "../model/Send";
-import { HttpClient } from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'cf-home',
@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() { }
 
   onFileSelect(event: any): void {
+    event.target.lastModifiedDate
     const formData = new FormData()
     const files: File[] = event.target.files
 
@@ -49,6 +50,7 @@ export class HomeComponent implements OnInit {
     this.isFormNCom = false;
     this.inCorrectMail = false;
 
+
     this.http.post<any>('http://localhost:8081/send', email).subscribe(
       (res) => console.log(res)
     );
@@ -57,4 +59,9 @@ export class HomeComponent implements OnInit {
        (res) => console.log(res)
      );
   }
+
+  toDraft(){
+
+  }
+
 }

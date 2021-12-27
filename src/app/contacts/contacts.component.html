@@ -1,0 +1,25 @@
+<h1>Your contacts</h1>
+<form class="form-signin" (ngSubmit)="onSubmit(logInForm)" #logInForm="ngForm" *ngIf="new" >
+
+  <label for="name" class="sr-only">Contact name</label>
+  <input type="text" id="name" name="name" class="form-control"
+         title="Enter the name"  placeholder="Name" required ngModel >
+
+  <label for="inputEmail" class="sr-only">Email address</label>
+  <input type="email" id="inputEmail" name="inputEmail" class="form-control"
+         title="Enter your email"  placeholder="Email address" required autofocus ngModel >
+
+
+  <input class="btn btn-lg btn-primary btn-block" type="submit">
+
+
+  <div class="alert alert-danger" role="alert" *ngIf="isFormNCom">
+    Please fill all fields.
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="inCorrectMail">
+    Invalid Mail.
+  </div>
+
+</form>
+
+<button class="newContact" (click)="add()" *ngIf="!new">Create new contact</button>

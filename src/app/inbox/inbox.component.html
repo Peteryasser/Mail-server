@@ -1,11 +1,28 @@
-<div>
-  <button class="button_key" style="background-color: #98c1d9" (click)="addRow()">+</button>
-  <table class="table">
-    <tr class="tr">
-      <td></td>
-      <td>from</td>
-      <td>subject - body</td>
-      <td>date</td>
+<div class="container">
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th>From</th>
+      <th>Subject</th>
+      <th>Body</th>
+      <th>Action</th>
     </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let friend of friends">
+      <td><span>{{friend.from}}</span></td>
+      <td><span>{{friend.subject}}</span></td>
+      <td><span>{{friend.body}}</span></td>
+      <td>
+        <button class="btn btn-sm btn-info">
+          <i class="fa fa-search"></i>Details</button>
+        <button class="btn btn-sm btn-warning">
+          <i class="fa fa-edit"></i>Edit</button>
+        <button class="btn btn-sm btn-danger">
+          <i class="fa fa-remove"></i>Delete</button>
+      </td>
+    </tr>
+
+    </tbody>
   </table>
 </div>

@@ -9,6 +9,10 @@ import { StatComponent } from './stat/stat.component';
 import {HttpClientModule} from "@angular/common/http";
 import { InboxComponent } from './inbox/inbox.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ContactsComponent } from './contacts/contacts.component';
+import { SentComponent } from './sent/sent.component';
+import { DraftComponent } from './draft/draft.component';
+import { TrashComponent } from './trash/trash.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +20,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     HomeComponent,
     StatComponent,
-    InboxComponent
+    InboxComponent,
+    ContactsComponent,
+    SentComponent,
+    DraftComponent,
+    TrashComponent
   ],
   imports: [
     BrowserModule,
