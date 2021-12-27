@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Data } from 'src/app/model/Data';
 import { DataInSign } from "../../model/DataInSign";
 import { Send } from "../../model/Send";
+import {Contact} from "../../model/Contact";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,7 @@ export class AutoService {
     return false;
   }
 
+
   save(): Data {
     return this.data;
   }
@@ -39,6 +41,13 @@ export class AutoService {
   autoSend(data: Send) {
     if (this.checkLogin(data.getTo())) {
       return true;
+    }
+    return false;
+  }
+
+  autoContact(data: string) {
+      if (this.checkLogin(data)) {
+        return true;
     }
     return false;
   }

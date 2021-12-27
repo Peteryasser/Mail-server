@@ -5,13 +5,12 @@ import {HttpClient} from "@angular/common/http";
 import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder,FormGroup} from "@angular/forms";
 
-
 @Component({
-  selector: 'cf-inbox',
-  templateUrl: './inbox.component.html',
-  styleUrls: ['./inbox.component.css']
+  selector: 'cf-trash',
+  templateUrl: './trash.component.html',
+  styleUrls: ['./trash.component.css']
 })
-export class InboxComponent implements OnInit {
+export class TrashComponent implements OnInit {
 
   constructor(private http: HttpClient,private modalService: NgbModal, private fb: FormBuilder) { }
   friends:Send[]
@@ -78,4 +77,11 @@ export class InboxComponent implements OnInit {
     }
   }
 
+  openRestore(targetModal: any, friend: Send){
+    this.deleteId = friend.id;
+    this.onDelete()
+  }
+
 }
+
+

@@ -5,14 +5,12 @@ import {HttpClient} from "@angular/common/http";
 import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder,FormGroup} from "@angular/forms";
 
-
 @Component({
-  selector: 'cf-inbox',
-  templateUrl: './inbox.component.html',
-  styleUrls: ['./inbox.component.css']
+  selector: 'cf-sent',
+  templateUrl: './sent.component.html',
+  styleUrls: ['./sent.component.css']
 })
-export class InboxComponent implements OnInit {
-
+export class SentComponent implements OnInit {
   constructor(private http: HttpClient,private modalService: NgbModal, private fb: FormBuilder) { }
   friends:Send[]
   closeResult: String='';
@@ -55,7 +53,7 @@ export class InboxComponent implements OnInit {
       size: 'lg'
     });
     // @ts-ignore
-    document.getElementById('fromd').setAttribute('value', friend.from);
+    document.getElementById('tod').setAttribute('value', friend.to);
     // @ts-ignore
     document.getElementById('subjectd').setAttribute('value', friend.subject);
     // @ts-ignore
@@ -79,3 +77,5 @@ export class InboxComponent implements OnInit {
   }
 
 }
+
+

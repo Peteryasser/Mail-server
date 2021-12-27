@@ -1,18 +1,29 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark" *ngIf="autoService.isAuto">
-  <div class="collapse navbar-collapse" id="navbarsExample04">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/home">Send mail</a>
-      </li>
-    </ul>
-  </div>
+
+
   <ul class="navbar-nav mr-auto">
     <li class="nav-item active">
-        <div class="inbox">
-          <a class="nav-link" routerLink="/inbox">inbox</a>
-        </div>
+      <a class="nav-link" routerLink="/home">Send mail</a>
+      <div class="inbox">
+        <a class="nav-link" routerLink="/inbox" >inbox</a>
+      </div>
+      <div class="contacts">
+        <a class="nav-link" routerLink="/contacts">contacts</a>
+      </div>
+      <div class="sent">
+        <a class="nav-link" routerLink="/sent" >Sent</a>
+      </div>
+      <div class="draft">
+        <a class="nav-link" routerLink="/draft">Draft</a>
+      </div>
+      <div class="trash">
+        <a class="nav-link" routerLink="/trash">Trash</a>
+      </div>
     </li>
   </ul>
+
+
+
 
   <div class="logout">
     <a class="nav-link" (click)="autoService.logout()">Log out <span class="sr-only"></span></a>

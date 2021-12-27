@@ -2,10 +2,11 @@ import { Data } from "./Data";
 
 // immutable design pattern
 export class Send {
-  private from: string;
-  private to: string;
-  private subject: string;
-  private body: string
+  public id:number;
+  public from: string;
+  public to: string;
+  public subject: string;
+  public body: string
   // private formData: FormData
 
   constructor(from: string, to: string, subject: string, body: string) {

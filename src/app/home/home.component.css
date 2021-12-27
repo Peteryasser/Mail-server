@@ -1,0 +1,12 @@
+.toDraft{
+  margin: 5px;
+
+  color: white;
+  background: red;
+  width: 200px;
+  height: 47px;
+  position: relative;
+
+  border-color: red;
+  border-radius: 5px ;
+}
