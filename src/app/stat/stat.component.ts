@@ -37,7 +37,7 @@ export class StatComponent implements OnInit {
     this.inCorrectMail = false;
 
     console.log(user)
-    this.servise.post<boolean>('http://localhost:8080/register', user, {
+    this.servise.post<boolean>('http://localhost:8081/register', user, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })

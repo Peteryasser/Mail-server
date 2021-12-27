@@ -6,14 +6,15 @@ export class Send {
   private to: string;
   private subject: string;
   private body: string
-  private multipartFiles: FormData
+  // private formData: FormDatan
 
-  constructor(from: string, to: string, subject: string, body: string, multipartFiles: FormData) {
+
+  constructor(from: string, to: string, subject: string, body: string) {
     this.from = from
     this.to = to
     this.subject = subject
     this.body = body
-    this.multipartFiles = multipartFiles
+    // this.formData = formData
   }
   getFrom() {
     return this.from
@@ -27,8 +28,8 @@ export class Send {
   getBody(): string {
     return this.body
   }
-  getAttachement(): FormData {
-    return this.multipartFiles
-  }
+  // getAttachement(): FormData {
+  //   return this.formData
+  // }
 
 }
