@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import {Send} from "../model/Send";
 import {AutoService} from "../service/auto/auto.service";
 import {HttpClient} from "@angular/common/http";
@@ -12,24 +13,30 @@ import {FormBuilder,FormGroup} from "@angular/forms";
 })
 export class TrashComponent implements OnInit {
 
-  constructor(private http: HttpClient,private modalService: NgbModal, private fb: FormBuilder) { }
-  friends:Send[]
-  closeResult: String='';
+
+  constructor(private http: HttpClient, private modalService: NgbModal, private fb: FormBuilder) {
+  }
+
+  friends: Send[]
+  closeResult: String = '';
   private deleteId: number | undefined;
+
   ngOnInit(): void {
     this.onn()
   }
+
   onn() {
     this.http.get<Send[]>("http://localhost:8081/inbox").subscribe(
       response => {
         this.friends = <Send[]>response
-        for (let i=0;i<this.friends.length;i++){
-          this.friends[i].id=i
+        for (let i = 0; i < this.friends.length; i++) {
+          this.friends[i].id = i
         }
       }
     );
     console.log(this.friends)
   }
+
   open(content: any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -47,6 +54,7 @@ export class TrashComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
   openDetails(targetModal: any, friend: Send) {
     this.modalService.open(targetModal, {
       centered: true,
@@ -68,20 +76,19 @@ export class TrashComponent implements OnInit {
       size: 'lg'
     });
   }
+
   onDelete() {
     if (typeof this.deleteId === "number") {
       this.friends.splice(this.deleteId, 1)
     }
-    for (let i=this.deleteId;i<this.friends.length;i++){
-      this.friends[i].id=i
+    for (let i = this.deleteId; i < this.friends.length; i++) {
+      this.friends[i].id = i
     }
   }
 
-  openRestore(targetModal: any, friend: Send){
+  openRestore(targetModal: any, friend: Send) {
     this.deleteId = friend.id;
     this.onDelete()
   }
 
 }
-
-
