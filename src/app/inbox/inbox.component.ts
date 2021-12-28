@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { observable } from 'rxjs';
+import { Send } from '../model/Send';
 
 @Component({
   selector: 'cf-inbox',
@@ -7,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InboxComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
   }
@@ -48,4 +51,16 @@ export class InboxComponent implements OnInit {
     }
   }
 
+  onLoad() {
+    console.log("hh")
+    return this.http.post<Send>("http://localhost:8081/inbox",
+      {
+        observe: "body"
+      }).subscribe(
+        (emails) => console.log(emails)
+      )
+  }
+
 }
+
+

@@ -6,14 +6,16 @@ export class Send {
   private to: string;
   private subject: string;
   private body: string
+  private attachmentPath: String
   // private formData: FormDatan
 
 
-  constructor(from: string, to: string, subject: string, body: string) {
+  constructor(from: string, to: string, subject: string, body: string, attachmentPath: String) {
     this.from = from
     this.to = to
     this.subject = subject
     this.body = body
+    this.attachmentPath = attachmentPath
     // this.formData = formData
   }
   getFrom() {

@@ -1,8 +1,9 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { AutoService } from "../service/auto/auto.service";
 import { Send } from "../model/Send";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Component({
   selector: 'cf-home',
@@ -16,6 +17,7 @@ export class HomeComponent implements OnInit {
   isFormNCom = false;
   inCorrectMail = false;
   attachement: FormData
+  attachmentPath: string
 
   ngOnInit() { }
 
@@ -23,9 +25,14 @@ export class HomeComponent implements OnInit {
     const formData = new FormData()
     const files: File[] = event.target.files
 
-    formData.append('files', files[0], files[0].name)
+    for (const file of files)
+      formData.append('files', file, file.name)
 
     this.attachement = formData
+    this.http.post<any>('http://localhost:8081/upload', this.attachement).subscribe(
+      (err) => console.log(err)
+    );
+
   }
 
   onSubmit(sendForm: NgForm) {
@@ -36,7 +43,7 @@ export class HomeComponent implements OnInit {
     }
 
     const email = new Send(this.autoService.save().getEmail(), sendForm.value.to,
-      sendForm.value.subject, sendForm.value.body)
+      sendForm.value.subject, sendForm.value.body, this.attachmentPath)
 
     if (!this.autoService.autoSend(email)) {
       this.isFormNCom = false;
@@ -51,8 +58,5 @@ export class HomeComponent implements OnInit {
       (res) => console.log(res)
     );
 
-    this.http.post<any>('http://localhost:8081/upload', this.attachement).subscribe(
-      (res) => console.log(res)
-    );
   }
 }
