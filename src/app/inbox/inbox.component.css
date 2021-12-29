@@ -24,3 +24,13 @@
 table .btn{
   margin: 2px;
 }
+select{
+  display:inline-block;
+  margin: 2px;
+  width: 100px;
+  height: 20px;
+  border-style: none;
+  box-sizing: border-box;
+  background-color: whitesmoke;
+  text-align: center;
+}

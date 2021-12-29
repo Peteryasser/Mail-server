@@ -4,6 +4,8 @@ import { Data } from 'src/app/model/Data';
 import { DataInSign } from "../../model/DataInSign";
 import { Send } from "../../model/Send";
 import {Contact} from "../../model/Contact";
+import {Observable} from "rxjs";
+import {HttpClient, HttpEvent} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,7 @@ export class AutoService {
   isAuto = false;
   isSignIn = false;
   signInComplete = false;
-  constructor(private router: Router) { }
+  constructor(private router: Router,private http:HttpClient) { }
 
   auto(data: Data): boolean {
     if (this.checkLogin(data.getEmail())) {
@@ -61,8 +63,23 @@ export class AutoService {
     this.isSignIn = true;
   }
   signinCom() {
-    this.router.navigate(['']);
+    this.router.navigate(['inbox']);
     this.signInComplete = true;
+  }
+
+  upload(formdata:FormData):Observable<HttpEvent<string[]>>{
+    return this.http.post<string[]>('http://localhost:8081/signIn',formdata,{
+      reportProgress:true,
+      observe:'events'
+    })
+  }
+
+  download(filename:string):Observable<HttpEvent<Blob>>{
+    return this.http.get(`http://localhost:8081/signIn/${filename}`,{
+      reportProgress:true,
+      observe:'events',
+      responseType:"blob"
+    })
   }
 
 
@@ -70,5 +87,7 @@ export class AutoService {
     this.isAuto = false;
     this.router.navigate(['']);
   }
+
+
 
 }

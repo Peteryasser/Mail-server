@@ -14,4 +14,5 @@ export class AppComponent {
   logout() {
     this.autoService.logout();
   }
+
 }

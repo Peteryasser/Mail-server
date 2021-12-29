@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   isFormNCom = false;
   inCorrectMail = false;
   attachement: FormData
+  isD=false
 
   ngOnInit() { }
 
@@ -60,7 +61,7 @@ export class HomeComponent implements OnInit {
   }
 
   toDraft(){
-
   }
+
 
 }

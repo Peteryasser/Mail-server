@@ -1,3 +1,18 @@
+<form class="form-signin" (ngSubmit)="onSearch(logInForm)" #logInForm="ngForm" >
+  <div>
+    <input  type="search" id="search" name="search" placeholder="Search" required ngModel>
+    <label>Sort by:</label>
+      <select name="sorts" id="sorts" required ngModel>
+        <option value="body">body</option>
+        <option value="subject">subject</option>
+        <option value="date">date</option>
+        <option value="priority">priority</option>
+      </select>
+      <input class="btn btn-sm btn-info" type="submit">
+    </div>
+</form>
+
+
 <div class="container">
   <table class="table table-bordered table-striped">
     <thead>
@@ -5,7 +20,9 @@
       <th>From</th>
       <th>Subject</th>
       <th>Body</th>
+      <th>Date</th>
       <th>Action</th>
+      <th>Priority</th>
     </tr>
     </thead>
     <tbody>
@@ -13,11 +30,27 @@
       <td><span>{{friend.from}}</span></td>
       <td><span>{{friend.subject}}</span></td>
       <td><span>{{friend.body}}</span></td>
+      <td><span>{{friend.date}}</span></td>
       <td>
         <button class="btn btn-sm btn-info" (click)="openDetails(contentDetails, friend)">
           <i class="fa fa-search"></i>Details</button>
         <button class="btn btn-sm btn-danger" (click)="openDelete(contentDelete, friend)">
           <i class="fa fa-remove"></i>Delete</button>
+      </td>
+      <td>
+
+        <form class="form-signin" (ngSubmit)="Priority(logInForm)" #logInForm="ngForm" >
+          <div>
+            <select name="priority" id="priority" required ngModel>
+              <option value="a">a</option>
+              <option value="b">b</option>
+              <option value="c">c</option>
+              <option value="d">d</option>
+            </select>
+            <input class="btn btn-sm btn-info" type="submit">
+          </div>
+        </form>
+
       </td>
     </tr>
     </tbody>

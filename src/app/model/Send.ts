@@ -7,6 +7,8 @@ export class Send {
   public to: string;
   public subject: string;
   public body: string
+  public priority:string
+  public date:string
   // private formData: FormData
 
   constructor(from: string, to: string, subject: string, body: string) {
