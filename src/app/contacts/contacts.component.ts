@@ -155,8 +155,7 @@ export class ContactsComponent implements OnInit {
     console.log(x)
     this.contacts.push(new Contact(x, []))
     const newContacts = this.contacts
-    this.http.post('http://localhost:8081/addContact', newContacts)
-      .subscribe();
+    this.http.post('http://localhost:8081/addContact', newContacts).subscribe();
     this.ngOnInit(); //reload the table
     this.modalService.dismissAll(); //dismiss the modal
   }
