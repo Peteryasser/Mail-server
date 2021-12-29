@@ -23,6 +23,8 @@
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
 
+        <button class="toDraft" (click)="toDraft()" >To draft</button>
+
         <div class="alert alert-danger" role="alert" *ngIf="isFormNCom">
           Please fill all fields.
         </div>

@@ -1,8 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Data } from 'src/app/model/Data';
 import { DataInSign } from "../../model/DataInSign";
 import { Send } from "../../model/Send";
+import { Contact } from "../../model/Contact";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,8 @@ export class AutoService {
   isAuto = false;
   isSignIn = false;
   signInComplete = false;
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private http: HttpClient) { }
 
   auto(data: Data): boolean {
     if (this.checkLogin(data.getEmail())) {
@@ -23,6 +26,7 @@ export class AutoService {
     this.isAuto = false;
     return false;
   }
+
 
   save(): Data {
     return this.data;
@@ -43,6 +47,13 @@ export class AutoService {
     return false;
   }
 
+  autoContact(data: string) {
+    if (this.checkLogin(data)) {
+      return true;
+    }
+    return false;
+  }
+
   private checkLogin(login: string): boolean {
     return login.includes('@mail.com') || login.includes('@gmail.com') || login.includes('@yahoo.com');
   }
@@ -58,8 +69,12 @@ export class AutoService {
 
 
   logout() {
+    this.http.get("http://localhost:8081/logOut").subscribe()
     this.isAuto = false;
     this.router.navigate(['']);
+  }
+  refresh() {
+    this.http.get("http://localhost:8081/refresh").subscribe()
   }
 
 }

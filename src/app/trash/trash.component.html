@@ -1,25 +1,27 @@
 <div class="container">
   <table class="table table-bordered table-striped">
     <thead>
-      <tr>
-        <th>From</th>
-        <th>Subject</th>
-        <th>Body</th>
-        <th>Action</th>
-      </tr>
+    <tr>
+      <th>From</th>
+      <th>Subject</th>
+      <th>Body</th>
+      <th>Action</th>
+    </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let friend of friends">
-        <td><span>{{friend.from}}</span></td>
-        <td><span>{{friend.subject}}</span></td>
-        <td><span>{{friend.body}}</span></td>
-        <td>
-          <button class="btn btn-sm btn-info" (click)="openDetails(contentDetails, friend)">
-            <i class="fa fa-search"></i>Details</button>
-          <button class="btn btn-sm btn-danger" (click)="openDelete(contentDelete, friend)">
-            <i class="fa fa-remove"></i>Delete</button>
-        </td>
-      </tr>
+    <tr *ngFor="let friend of friends">
+      <td><span>{{friend.from}}</span></td>
+      <td><span>{{friend.subject}}</span></td>
+      <td><span>{{friend.body}}</span></td>
+      <td>
+        <button class="btn btn-sm btn-info" (click)="openDetails(contentDetails, friend)">
+          <i class="fa fa-search"></i>Details</button>
+        <button class="btn btn-sm btn-success" (click)="openRestore(contentDelete, friend)">
+          <i class="fa fa-backward"></i>Restore</button>
+        <button class="btn btn-sm btn-danger" (click)="openDelete(contentDelete, friend)">
+          <i class="fa fa-remove"></i>Delete</button>
+      </td>
+    </tr>
     </tbody>
   </table>
 </div>

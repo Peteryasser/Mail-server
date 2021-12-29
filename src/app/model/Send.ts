@@ -1,22 +1,19 @@
-import { Data } from "./Data";
-
-// immutable design pattern
 export class Send {
-  private from: string;
-  private to: string;
-  private subject: string;
-  private body: string
-  private attachmentPath: String
-  // private formData: FormDatan
+  public id: number
+  public priority: string;
+  public date: string;
+  public from: string;
+  public to: string;
+  public subject: string;
+  public body: string
+  public attachmentPath: string
+  public attachmentsName: string[]
 
-
-  constructor(from: string, to: string, subject: string, body: string, attachmentPath: String) {
+  constructor(from: string, to: string, subject: string, body: string) {
     this.from = from
     this.to = to
     this.subject = subject
     this.body = body
-    this.attachmentPath = attachmentPath
-    // this.formData = formData
   }
   getFrom() {
     return this.from
@@ -30,8 +27,5 @@ export class Send {
   getBody(): string {
     return this.body
   }
-  // getAttachement(): FormData {
-  //   return this.formData
-  // }
 
 }

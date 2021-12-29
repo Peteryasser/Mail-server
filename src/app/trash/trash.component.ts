@@ -1,27 +1,32 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Send } from "../model/Send";
-import { AutoService } from "../service/auto/auto.service";
-import { ModalDismissReasons, NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { FormBuilder, FormGroup } from "@angular/forms";
 
+import {Send} from "../model/Send";
+import {AutoService} from "../service/auto/auto.service";
+import {HttpClient} from "@angular/common/http";
+import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {FormBuilder,FormGroup} from "@angular/forms";
 
 @Component({
-  selector: 'cf-inbox',
-  templateUrl: './inbox.component.html',
-  styleUrls: ['./inbox.component.css']
+  selector: 'cf-trash',
+  templateUrl: './trash.component.html',
+  styleUrls: ['./trash.component.css']
 })
-export class InboxComponent implements OnInit {
+export class TrashComponent implements OnInit {
 
-  constructor(private http: HttpClient, private modalService: NgbModal, private fb: FormBuilder) { }
+
+  constructor(private http: HttpClient, private modalService: NgbModal, private fb: FormBuilder) {
+  }
+
   friends: Send[]
   closeResult: String = '';
   private deleteId: number | undefined;
+
   ngOnInit(): void {
     this.onn()
   }
+
   onn() {
-    this.http.get<Send[]>("http://localhost:8081/inbox").subscribe(
+    this.http.get<Send[]>("http://localhost:8081/trash").subscribe(
       response => {
         this.friends = <Send[]>response
         for (let i = 0; i < this.friends.length; i++) {
@@ -31,8 +36,9 @@ export class InboxComponent implements OnInit {
     );
     console.log(this.friends)
   }
+
   open(content: any) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -48,6 +54,7 @@ export class InboxComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
   openDetails(targetModal: any, friend: Send) {
     this.modalService.open(targetModal, {
       centered: true,
@@ -69,10 +76,11 @@ export class InboxComponent implements OnInit {
       size: 'lg'
     });
   }
+
   onDelete() {
-    let oldEmail :Send = this.friends[this.deleteId];
-    this.http.post('http://localhost:8081/deleteFromInbox', oldEmail)
-      .subscribe();
+    let oldEmail: Send = this.friends[this.deleteId]
+    this.http.post('http://localhost:8081/deleteFromTrash', oldEmail)
+      .subscribe()
 
     if (typeof this.deleteId === "number") {
       this.friends.splice(this.deleteId, 1)
@@ -82,16 +90,9 @@ export class InboxComponent implements OnInit {
     }
   }
 
-  onLoad() {
-    console.log("hh")
-    return this.http.post<Send>("http://localhost:8081/inbox",
-      {
-        observe: "body"
-      }).subscribe(
-        (emails) => console.log(emails)
-      )
+  openRestore(targetModal: any, friend: Send) {
+    this.deleteId = friend.id;
+    this.onDelete()
   }
 
 }
-
-

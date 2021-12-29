@@ -1,38 +1,36 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Send } from "../model/Send";
-import { AutoService } from "../service/auto/auto.service";
-import { ModalDismissReasons, NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { FormBuilder, FormGroup } from "@angular/forms";
-
+import {Send} from "../model/Send";
+import {AutoService} from "../service/auto/auto.service";
+import {HttpClient} from "@angular/common/http";
+import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {FormBuilder,FormGroup} from "@angular/forms";
 
 @Component({
-  selector: 'cf-inbox',
-  templateUrl: './inbox.component.html',
-  styleUrls: ['./inbox.component.css']
+  selector: 'cf-sent',
+  templateUrl: './sent.component.html',
+  styleUrls: ['./sent.component.css']
 })
-export class InboxComponent implements OnInit {
-
-  constructor(private http: HttpClient, private modalService: NgbModal, private fb: FormBuilder) { }
-  friends: Send[]
-  closeResult: String = '';
+export class SentComponent implements OnInit {
+  constructor(private http: HttpClient,private modalService: NgbModal, private fb: FormBuilder) { }
+  friends:Send[]
+  closeResult: String='';
   private deleteId: number | undefined;
   ngOnInit(): void {
     this.onn()
   }
   onn() {
-    this.http.get<Send[]>("http://localhost:8081/inbox").subscribe(
+    this.http.get<Send[]>("http://localhost:8081/sent").subscribe(
       response => {
         this.friends = <Send[]>response
-        for (let i = 0; i < this.friends.length; i++) {
-          this.friends[i].id = i
+        for (let i=0;i<this.friends.length;i++){
+          this.friends[i].id=i
         }
       }
     );
     console.log(this.friends)
   }
   open(content: any) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -55,7 +53,7 @@ export class InboxComponent implements OnInit {
       size: 'lg'
     });
     // @ts-ignore
-    document.getElementById('fromd').setAttribute('value', friend.from);
+    document.getElementById('tod').setAttribute('value', friend.to);
     // @ts-ignore
     document.getElementById('subjectd').setAttribute('value', friend.subject);
     // @ts-ignore
@@ -70,26 +68,15 @@ export class InboxComponent implements OnInit {
     });
   }
   onDelete() {
-    let oldEmail :Send = this.friends[this.deleteId];
-    this.http.post('http://localhost:8081/deleteFromInbox', oldEmail)
-      .subscribe();
-
     if (typeof this.deleteId === "number") {
       this.friends.splice(this.deleteId, 1)
     }
-    for (let i = this.deleteId; i < this.friends.length; i++) {
-      this.friends[i].id = i
+    for (let i=this.deleteId;i<this.friends.length;i++){
+      this.friends[i].id=i
     }
-  }
-
-  onLoad() {
-    console.log("hh")
-    return this.http.post<Send>("http://localhost:8081/inbox",
-      {
-        observe: "body"
-      }).subscribe(
-        (emails) => console.log(emails)
-      )
+    const newEmails = this.friends
+    this.http.post('http://localhost:8081/deleteFromSent', newEmails)
+      .subscribe()
   }
 
 }
